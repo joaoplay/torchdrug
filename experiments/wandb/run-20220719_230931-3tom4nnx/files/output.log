@@ -1,0 +1,16 @@
+
+Loading /Users/jbsimoes/molecule-datasets/250k_rndm_zinc_drugs_clean_3.csv:  23% 115575/498911 [00:02<00:07, 50587.50it/s]
+Traceback (most recent call last):
+  File "/Users/jbsimoes/Documents/Projects/torchdrug/experiments/molecules_step_evo_fine.py", line 18, in <module>
+    dataset = datasets.ZINC250k("~/molecule-datasets/", kekulize=True, node_feature="symbol")
+  File "/Users/jbsimoes/Library/Caches/pypoetry/virtualenvs/torchdrug-mwG5EWGa-py3.8/lib/python3.8/site-packages/decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+  File "/Users/jbsimoes/Documents/Projects/torchdrug/torchdrug/core/core.py", line 282, in wrapper
+    return init(self, *args, **kwargs)
+  File "/Users/jbsimoes/Documents/Projects/torchdrug/torchdrug/datasets/zinc250k.py", line 38, in __init__
+    self.load_csv(file_name, smiles_field="smiles", target_fields=self.target_fields,
+  File "/Users/jbsimoes/Documents/Projects/torchdrug/torchdrug/data/dataset.py", line 98, in load_csv
+    for values in reader:
+  File "/Users/jbsimoes/Library/Caches/pypoetry/virtualenvs/torchdrug-mwG5EWGa-py3.8/lib/python3.8/site-packages/tqdm/std.py", line 1195, in __iter__
+    for obj in iterable:
+KeyboardInterrupt
