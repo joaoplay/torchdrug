@@ -3,8 +3,8 @@ import os
 import wandb
 from torch import optim
 
-from . import datasets, models, tasks
-from .core import Engine
+from torchdrug import datasets, models, tasks
+from torchdrug.core import Engine
 
 USE_CUDA = int(os.getenv("USE_CUDA", 0))
 
