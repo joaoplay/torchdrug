@@ -1,5 +1,5 @@
-torch>=1.4.0
-torch-scatter>=1.4.0
+https://download.pytorch.org/whl/cpu/torch-1.11.0-cp38-none-macosx_10_9_x86_64.whl
+https://data.pyg.org/whl/torch-1.11.0%2Bcpu/torch_scatter-2.0.9-cp38-cp38-macosx_10_15_x86_64.whl
 decorator
 numpy>=1.11
 rdkit-pypi
