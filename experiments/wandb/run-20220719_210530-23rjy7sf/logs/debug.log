@@ -1,0 +1,140 @@
+2022-07-19 21:05:30,073 INFO    MainThread:36011 [wandb_setup.py:_flush():76] Configure stats pid to 36011
+2022-07-19 21:05:30,074 INFO    MainThread:36011 [wandb_setup.py:_flush():76] Loading settings from /Users/jbsimoes/.config/wandb/settings
+2022-07-19 21:05:30,075 INFO    MainThread:36011 [wandb_setup.py:_flush():76] Loading settings from /Users/jbsimoes/Documents/Projects/torchdrug/experiments/wandb/settings
+2022-07-19 21:05:30,075 INFO    MainThread:36011 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'api_key': '***REDACTED***'}
+2022-07-19 21:05:30,076 INFO    MainThread:36011 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'experiments/molecules_step_evo_fine.py', 'program': '/Users/jbsimoes/Documents/Projects/torchdrug/experiments/molecules_step_evo_fine.py'}
+2022-07-19 21:05:30,076 INFO    MainThread:36011 [wandb_init.py:_log_setup():461] Logging user logs to /Users/jbsimoes/Documents/Projects/torchdrug/experiments/wandb/run-20220719_210530-23rjy7sf/logs/debug.log
+2022-07-19 21:05:30,076 INFO    MainThread:36011 [wandb_init.py:_log_setup():462] Logging internal logs to /Users/jbsimoes/Documents/Projects/torchdrug/experiments/wandb/run-20220719_210530-23rjy7sf/logs/debug-internal.log
+2022-07-19 21:05:30,078 INFO    MainThread:36011 [wandb_init.py:init():495] calling init triggers
+2022-07-19 21:05:30,079 INFO    MainThread:36011 [wandb_init.py:init():498] wandb.init called with sweep_config: {}
+config: {}
+2022-07-19 21:05:30,080 INFO    MainThread:36011 [wandb_init.py:init():548] starting backend
+2022-07-19 21:05:30,081 INFO    MainThread:36011 [backend.py:_multiprocessing_setup():97] multiprocessing start_methods=spawn,fork,forkserver, using: spawn
+2022-07-19 21:05:30,086 INFO    MainThread:36011 [backend.py:ensure_launched():217] starting backend process...
+2022-07-19 21:05:30,116 INFO    MainThread:36011 [backend.py:ensure_launched():222] started backend process with pid: 36126
+2022-07-19 21:05:30,120 INFO    MainThread:36011 [wandb_init.py:init():558] backend started and connected
+2022-07-19 21:05:30,144 INFO    MainThread:36011 [wandb_init.py:init():634] updated telemetry
+2022-07-19 21:05:30,239 INFO    MainThread:36011 [wandb_init.py:init():665] communicating run to backend with 30 second timeout
+2022-07-19 21:05:32,697 INFO    MainThread:36011 [wandb_run.py:_on_init():1919] communicating current version
+2022-07-19 21:05:32,885 INFO    MainThread:36011 [wandb_run.py:_on_init():1923] got version response 
+2022-07-19 21:05:32,886 INFO    MainThread:36011 [wandb_init.py:init():700] starting run threads in backend
+2022-07-19 21:05:32,937 INFO    MainThread:36011 [wandb_run.py:_console_start():1893] atexit reg
+2022-07-19 21:05:32,938 INFO    MainThread:36011 [wandb_run.py:_redirect():1766] redirect: SettingsConsole.REDIRECT
+2022-07-19 21:05:32,938 INFO    MainThread:36011 [wandb_run.py:_redirect():1771] Redirecting console.
+2022-07-19 21:05:32,940 INFO    MainThread:36011 [wandb_run.py:_redirect():1827] Redirects installed.
+2022-07-19 21:05:32,940 INFO    MainThread:36011 [wandb_init.py:init():732] run started, returning control to user process
+2022-07-19 21:05:32,943 INFO    MainThread:36011 [wandb_run.py:_config_callback():1131] config_cb None None {'class': 'core.Engine', 'task': {'class': 'tasks.GCPNGeneration', 'model': {'class': 'models.RGCN', 'input_dim': 18, 'hidden_dims': [256, 256, 256, 256], 'num_relation': 3, 'edge_input_dim': None, 'short_cut': False, 'batch_norm': False, 'activation': 'relu', 'concat_hidden': False, 'readout': 'sum'}, 'atom_types': [6, 7, 8, 9, 15, 16, 17, 35, 53], 'max_edge_unroll': 12, 'max_node': 38, 'task': 'plogp', 'criterion': 'ppo', 'hidden_dim_mlp': 128, 'agent_update_interval': 3, 'gamma': 0.9, 'reward_temperature': 1, 'baseline_momentum': 0.9}, 'train_set': {'class': 'datasets.ZINC250k', 'path': '~/molecule-datasets/', 'verbose': 1, 'kekulize': True, 'node_feature': 'symbol'}, 'valid_set': None, 'test_set': None, 'optimizer': {'class': 'optim.Adam', 'lr': 0.001, 'betas': [0.9, 0.999], 'eps': 1e-08, 'weight_decay': 0, 'amsgrad': False, 'maximize': False}, 'scheduler': None, 'gpus': None, 'batch_size': 128, 'gradient_interval': 1, 'num_worker': 0, 'logger': 'wandb', 'log_interval': 10}
+2022-07-19 22:29:08,400 INFO    MainThread:36011 [wandb_run.py:_atexit_cleanup():1862] got exitcode: 255
+2022-07-19 22:29:08,409 INFO    MainThread:36011 [wandb_run.py:_restore():1834] restore
+2022-07-19 22:29:10,520 INFO    MainThread:36011 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 1
+}
+pusher_stats {
+  uploaded_bytes: 839
+  total_bytes: 839
+}
+
+2022-07-19 22:29:10,931 INFO    MainThread:36011 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 1
+}
+pusher_stats {
+  uploaded_bytes: 839
+  total_bytes: 839
+}
+
+2022-07-19 22:29:11,793 INFO    MainThread:36011 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 839
+  total_bytes: 38613
+}
+
+2022-07-19 22:29:11,897 INFO    MainThread:36011 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 839
+  total_bytes: 38613
+}
+
+2022-07-19 22:29:12,004 INFO    MainThread:36011 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 839
+  total_bytes: 38613
+}
+
+2022-07-19 22:29:12,110 INFO    MainThread:36011 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 839
+  total_bytes: 38613
+}
+
+2022-07-19 22:29:12,215 INFO    MainThread:36011 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 38613
+  total_bytes: 38613
+}
+
+2022-07-19 22:29:12,320 INFO    MainThread:36011 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 38613
+  total_bytes: 38613
+}
+
+2022-07-19 22:29:12,425 INFO    MainThread:36011 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 38613
+  total_bytes: 38613
+}
+
+2022-07-19 22:29:12,530 INFO    MainThread:36011 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 38613
+  total_bytes: 38613
+}
+
+2022-07-19 22:29:12,633 INFO    MainThread:36011 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 38613
+  total_bytes: 38613
+}
+
+2022-07-19 22:29:13,328 INFO    MainThread:36011 [wandb_run.py:_on_finish():1991] got exit ret: file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 38613
+  total_bytes: 38613
+}
+
+2022-07-19 22:29:13,870 INFO    MainThread:36011 [wandb_run.py:_on_finish():1991] got exit ret: done: true
+exit_result {
+}
+file_counts {
+  wandb_count: 5
+}
+pusher_stats {
+  uploaded_bytes: 38613
+  total_bytes: 38613
+}
+local_info {
+}
+
+2022-07-19 22:29:15,228 INFO    MainThread:36011 [wandb_run.py:_footer_history_summary_info():3099] rendering history
+2022-07-19 22:29:15,229 INFO    MainThread:36011 [wandb_run.py:_footer_history_summary_info():3131] rendering summary
+2022-07-19 22:29:15,236 INFO    MainThread:36011 [wandb_run.py:_footer_sync_info():3055] logging synced files
