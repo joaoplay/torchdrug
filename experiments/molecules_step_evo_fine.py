@@ -1,5 +1,6 @@
 import os
 
+import wandb
 from torch import optim
 
 from torchdrug import datasets, models, tasks
@@ -12,7 +13,7 @@ os.environ["WANDB_API_KEY"] = '237099249b3c0e91437061c393ab089d03339bc3'
 if __name__ == '__main__':
     WANDB_PATH = '/data' if USE_CUDA else '.'
 
-    # run = wandb.init(project="molecule-generation", entity="jbsimoes", mode=os.getenv("WANDB_UPLOAD_MODE", "online"), dir=WANDB_PATH)
+    run = wandb.init(project="molecule-generation", entity="jbsimoes", mode=os.getenv("WANDB_UPLOAD_MODE", "online"), dir=WANDB_PATH)
 
     dataset = datasets.ZINC250k("~/molecule-datasets/", kekulize=True, node_feature="symbol")
     model = models.RGCN(input_dim=dataset.node_feature_dim, num_relation=dataset.num_bond_type, hidden_dims=[256, 256, 256, 256], batch_norm=False)
