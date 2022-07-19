@@ -1,0 +1,22 @@
+{
+    "os": "macOS-12.4-x86_64-i386-64bit",
+    "python": "3.8.13",
+    "heartbeatAt": "2022-07-19T22:47:34.167170",
+    "startedAt": "2022-07-19T22:47:32.537275",
+    "docker": null,
+    "cpu_count": 8,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/Users/jbsimoes/Documents/Projects/torchdrug/experiments/molecules_step_evo_fine.py",
+    "codePath": "experiments/molecules_step_evo_fine.py",
+    "git": {
+        "remote": "git@github.com:joaoplay/torchdrug.git",
+        "commit": "6f8ebba494c949e17e50f86e07453efefc039ac4"
+    },
+    "email": "joaosbraz@gmail.com",
+    "root": "/Users/jbsimoes/Documents/Projects/torchdrug",
+    "host": "vpn01.dei.uc.pt",
+    "username": "jbsimoes",
+    "executable": "/Users/jbsimoes/Library/Caches/pypoetry/virtualenvs/torchdrug-mwG5EWGa-py3.8/bin/python"
+}
