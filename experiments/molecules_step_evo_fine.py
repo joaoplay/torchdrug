@@ -17,10 +17,10 @@ if __name__ == '__main__':
 
     dataset = datasets.ZINC250k("~/molecule-datasets/", kekulize=True, node_feature="symbol")
     model = models.RGCN(input_dim=dataset.node_feature_dim, num_relation=dataset.num_bond_type, hidden_dims=[256, 256, 256, 256], batch_norm=False)
-    task = tasks.GCPNGeneration(model, [6, 7, 8, 9, 15, 16, 17, 35, 53], max_edge_unroll=12, max_node=38, task="plogp",
+    task = tasks.GCPNGeneration(model, [6, 7, 8, 9, 15, 16, 17, 35, 53], max_edge_unroll=12, max_node=38, task=["plogp", "qed"],
                                 criterion="ppo", reward_temperature=1, agent_update_interval=3, gamma=0.9)
     optimizer = optim.Adam(task.parameters(), lr=1e-5)
-    solver = Engine(task, dataset, None, None, optimizer, gpus=(0, ), logger="wandb", batch_size=128, log_interval=10)
+    solver = Engine(task, dataset, None, None, optimizer, logger="wandb", batch_size=128, log_interval=10)
 
     solver.load(WANDB_PATH + '/model.pth')
 
