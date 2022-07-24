@@ -20,7 +20,7 @@ if __name__ == '__main__':
     task = tasks.GCPNGeneration(model, [6, 7, 8, 9, 15, 16, 17, 35, 53], max_edge_unroll=12, max_node=38, task=["plogp", "qed"],
                                 criterion="ppo", reward_temperature=1, agent_update_interval=3, gamma=0.9)
     optimizer = optim.Adam(task.parameters(), lr=1e-5)
-    solver = Engine(task, dataset, None, None, optimizer, gpus=(0, ), logger="wandb", batch_size=256, log_interval=10)
+    solver = Engine(task, dataset, None, None, optimizer, gpus=(0, ), logger="wandb", batch_size=128, log_interval=10)
 
     solver.load(WANDB_PATH + '/model.pth')
 
