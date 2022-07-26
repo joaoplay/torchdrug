@@ -13,3 +13,5 @@ if __name__ == '__main__':
     optimizer = optim.Adam(task.parameters(), lr=1e-3)
     solver = Engine(task, dataset, None, None, optimizer, batch_size=128, log_interval=10)
     solver.train(num_epoch=1)
+
+

@@ -12,7 +12,7 @@ from torchdrug.data import constant, Graph, PackedGraph
 from torchdrug.core import Registry as R
 from torchdrug.data.rdkit import draw
 
-plt.switch_backend("agg")
+#plt.switch_backend("agg")
 
 
 class Molecule(Graph):

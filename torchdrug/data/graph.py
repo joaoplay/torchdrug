@@ -13,7 +13,7 @@ from torchdrug import core, utils
 from torchdrug.data import PerfectHash, Dictionary
 from torchdrug.utils import pretty
 
-plt.switch_backend("agg")
+#plt.switch_backend("agg")
 
 
 class Graph(core._MetaContainer):
