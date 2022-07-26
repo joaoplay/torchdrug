@@ -1212,7 +1212,7 @@ type = "url"
 url = "https://download.pytorch.org/whl/cpu/torch-1.11.0-cp38-none-macosx_10_9_x86_64.whl"
 [[package]]
 name = "torch"
-version = "1.11.0+cpu"
+version = "1.11.0+cu113"
 description = "Tensors and Dynamic neural networks in Python with strong GPU acceleration"
 category = "main"
 optional = false
@@ -1223,7 +1223,7 @@ typing-extensions = "*"
 
 [package.source]
 type = "url"
-url = "https://download.pytorch.org/whl/cpu/torch-1.11.0%2Bcpu-cp38-cp38-linux_x86_64.whl"
+url = "https://download.pytorch.org/whl/cu113/torch-1.11.0%2Bcu113-cp38-cp38-linux_x86_64.whl"
 [[package]]
 name = "torch-scatter"
 version = "2.0.9"
@@ -1371,7 +1371,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "~3.8"
-content-hash = "3ba8d757df0d0b13bd0e6279840200f61515a42fc96da7ffe1f80eab21295756"
+content-hash = "75de1ea3dc5a4db5ed77825b3d208bdf53fb9137c73e0264865f835e9645a1f7"
 
 [metadata.files]
 antlr4-python3-runtime = []
