@@ -31,7 +31,7 @@ def run(cfg: DictConfig):
 
     optimizer = optim.Adam(task.parameters(), lr=1e-5)
 
-    solver = Engine(task, dataset, None, None, optimizer, logger="wandb", batch_size=128, log_interval=1)
+    solver = Engine(task, dataset, None, None, optimizer, gpus=cfg.gpus, logger="wandb", batch_size=128, log_interval=1)
 
     solver.load(WANDB_PATH + '/model.pth')
 
