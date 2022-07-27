@@ -853,9 +853,11 @@ class GCPNGeneration(tasks.Task, core.Configurable):
 
         for task in current_tasks:
             if task == "plogp":
+                print("Calculating plogp")
                 # TODO: 
                 reward += (plogp / self.reward_temperature).exp()
             elif task == "qed":
+                print("Calculating qed")
                 # TODO:                 
                 # reward += ((qed - 0.9) * 20).exp()
                 # reward += ((qed - 0.4) * 4 / self.reward_temperature).exp()
