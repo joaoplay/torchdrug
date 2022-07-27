@@ -3,4 +3,4 @@ task:
   - plogp
 gpus:
 run_name: molecule-generation
-use_dynamic_task: true
+use_dynamic_task: false
