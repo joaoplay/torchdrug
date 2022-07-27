@@ -21,8 +21,8 @@ BASE_PATH = os.path.dirname(os.path.realpath(__file__))
 def run(cfg: DictConfig):
     # Define a OrderedDict
     dynamic_tasks = OrderedDict({
-        20: ['qed'],
-        40: ['plogp'],
+        100: ['qed'],
+        200: ['plogp'],
         10000000000000: ['qed', 'plogp']
     })
 
