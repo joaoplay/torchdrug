@@ -19,14 +19,20 @@ BASE_PATH = os.path.dirname(os.path.realpath(__file__))
 
 @hydra.main(config_path="configs", config_name="default_config")
 def run(cfg: DictConfig):
-    # Define a OrderedDict
-    dynamic_tasks = OrderedDict({
-        100: ['qed'],
-        200: ['plogp'],
-        10000000000000: ['qed', 'plogp']
-    })
 
-    run_name = f'multi-objective-{cfg.task}'
+    dynamic_tasks = None
+    if cfg.use_dynamic_task:
+        print("Using dynamic task")
+        dynamic_tasks = OrderedDict({
+            300: ['qed'],
+            600: ['plogp'],
+            10000000000000: ['qed', 'plogp']
+        })
+        run_name = f'{cfg.run_name}-{list(dynamic_tasks.items())}'
+    else:
+        run_name = f'{cfg.run_name}-{cfg.task}'
+
+    print(f"Run name: {run_name}")
     wandb.init(project="molecule-generation", entity="jbsimoes", mode=os.getenv("WANDB_UPLOAD_MODE", "online"),
                dir=WANDB_PATH, name=run_name)
     dataset = datasets.ZINC250k("~/molecule-datasets/", kekulize=True, node_feature="symbol")

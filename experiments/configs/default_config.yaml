@@ -2,3 +2,5 @@ task:
   - qed
   - plogp
 gpus:
+run_name: molecule-generation
+use_dynamic_task: true
