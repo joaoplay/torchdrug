@@ -21,9 +21,9 @@ class ZINC250k(data.MoleculeDataset):
         **kwargs
     """
 
-    #url = "https://raw.githubusercontent.com/aspuru-guzik-group/chemical_vae/master/models/zinc_properties/" \
-    #      "250k_rndm_zinc_drugs_clean_3.csv"
-    url = "https://raw.githubusercontent.com/joaoplay/molecule-generation/main/dataset.csv?token=GHSAT0AAAAAABVY2FGMQYYT466TEECUPWY6YXBHLYA"
+    url = "https://raw.githubusercontent.com/aspuru-guzik-group/chemical_vae/master/models/zinc_properties/" \
+          "250k_rndm_zinc_drugs_clean_3.csv"
+    #url = "https://raw.githubusercontent.com/joaoplay/molecule-generation/main/dataset.csv?token=GHSAT0AAAAAABVY2FGMQYYT466TEECUPWY6YXBHLYA"
     md5 = "b59078b2b04c6e9431280e3dc42048d5"
     target_fields = ["logP", "qed"]
 
