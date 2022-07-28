@@ -804,6 +804,10 @@ class GCPNGeneration(tasks.Task, core.Configurable):
 
         return self.dynamic_task[key]
 
+    def change_max_node(self, max_node):
+        self.max_node = max_node
+        self.register_buffer("moving_baseline", torch.zeros(self.max_node + 1))
+
     def reinforce_forward(self, batch):
         all_loss = torch.tensor(0, dtype=torch.float32, device=self.device)
         metric = {}
@@ -820,6 +824,9 @@ class GCPNGeneration(tasks.Task, core.Configurable):
 
         # generation takes less time when early_stop=True
         graph = self.generate(len(batch["graph"]), max_resample=20, off_policy=True, max_step=40 * 2, verbose=1)
+        
+        print("num_nodes:", graph.num_nodes)
+
         if graph.num_nodes.max() == 1:
             raise ValueError("Generation results collapse to singleton molecules")
 
@@ -890,6 +897,7 @@ class GCPNGeneration(tasks.Task, core.Configurable):
 
         # reward reshaping
         reward = graph.reward
+
         reward = reward * self.gamma ** (graph.original_num_nodes - graph.num_nodes).float()
 
         # per graph size reward baseline

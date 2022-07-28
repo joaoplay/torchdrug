@@ -4,3 +4,4 @@ task:
 gpus:
 run_name: molecule-generation
 use_dynamic_task: false
+max_node:

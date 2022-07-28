@@ -44,9 +44,10 @@ def run(cfg: DictConfig):
     optimizer = optim.Adam(task.parameters(), lr=1e-5)
     solver = Engine(task, dataset, None, None, optimizer, gpus=cfg.gpus, logger="wandb", batch_size=128, log_interval=1)
 
-    print(os.path.dirname(os.path.realpath(__file__)))
-
     solver.load(BASE_PATH + '/model.pth')
+
+    if cfg.max_node:
+        task.change_max_node(cfg.max_node)
 
     solver.train(num_epoch=1)
 
