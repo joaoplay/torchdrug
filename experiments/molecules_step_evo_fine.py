@@ -35,9 +35,9 @@ def run(cfg: DictConfig):
     dynamic_size = None
     if cfg.use_dynamic_size:
         dynamic_size = OrderedDict({
-            30: 10,
-            60: 20,
-            120: 30,
+            100: 10,
+            200: 20,
+            300: 30,
             10000000000000: 38
         })
 
