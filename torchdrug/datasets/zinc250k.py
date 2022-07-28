@@ -23,7 +23,7 @@ class ZINC250k(data.MoleculeDataset):
 
     url = "https://raw.githubusercontent.com/aspuru-guzik-group/chemical_vae/master/models/zinc_properties/" \
           "250k_rndm_zinc_drugs_clean_3.csv"
-    #url = "https://raw.githubusercontent.com/joaoplay/molecule-generation/main/dataset.csv?token=GHSAT0AAAAAABVY2FGNR6YKP4ZJ6U3UXEQ2YXCPZMA"
+    #url = "https://raw.githubusercontent.com/joaoplay/molecule-generation/main/dataset.csv?token=GHSAT0AAAAAABVY2FGNRQLGOFSNWZ5SVTPWYXDAOVA"
     md5 = "b59078b2b04c6e9431280e3dc42048d5"
     target_fields = ["logP", "qed"]
 

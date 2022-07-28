@@ -32,6 +32,15 @@ def run(cfg: DictConfig):
     else:
         run_name = f'{cfg.run_name}-{cfg.task}'
 
+    dynamic_size = None
+    if cfg.use_dynamic_size:
+        dynamic_size = OrderedDict({
+            30: 10,
+            60: 20,
+            120: 30,
+            10000000000000: 38
+        })
+
     print(f"Run name: {run_name}")
     wandb.init(project="molecule-generation", entity="jbsimoes", mode=os.getenv("WANDB_UPLOAD_MODE", "online"),
                dir=WANDB_PATH, name=run_name)
@@ -40,14 +49,11 @@ def run(cfg: DictConfig):
                         hidden_dims=[256, 256, 256, 256], batch_norm=False)
     task = tasks.GCPNGeneration(model, [6, 7, 8, 9, 15, 16, 17, 35, 53], max_edge_unroll=12, max_node=38,
                                 task=cfg.task, criterion='ppo', reward_temperature=1, agent_update_interval=3, gamma=0.9,
-                                dynamic_task=dynamic_tasks)
+                                dynamic_task=dynamic_tasks, dynamic_size=dynamic_size)
     optimizer = optim.Adam(task.parameters(), lr=1e-5)
     solver = Engine(task, dataset, None, None, optimizer, gpus=cfg.gpus, logger="wandb", batch_size=128, log_interval=1)
 
     solver.load(BASE_PATH + '/model.pth')
-
-    if cfg.max_node:
-        task.change_max_node(cfg.max_node)
 
     solver.train(num_epoch=1)
 

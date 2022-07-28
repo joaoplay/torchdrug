@@ -621,7 +621,7 @@ class GCPNGeneration(tasks.Task, core.Configurable):
 
     def __init__(self, model, atom_types, max_edge_unroll=None, max_node=None, task=(), criterion="nll",
                  hidden_dim_mlp=128, agent_update_interval=10, gamma=0.9, reward_temperature=1, baseline_momentum=0.9,
-                 dynamic_task=None):
+                 dynamic_task=None, dynamic_size=None):
         super(GCPNGeneration, self).__init__()
         self.model = model
         self.task = task
@@ -637,6 +637,7 @@ class GCPNGeneration(tasks.Task, core.Configurable):
         self.batch_id = 0
 
         self.dynamic_task = dynamic_task
+        self.dynamic_size = dynamic_size
 
         remap_atom_type = transforms.RemapAtomType(atom_types)
         self.register_buffer("id2atom", remap_atom_type.id2atom)
@@ -795,14 +796,24 @@ class GCPNGeneration(tasks.Task, core.Configurable):
         }
         return stop_logits, node1_logits, node2_logits, edge_logits, index_dict
 
-    def find_closest_dynamic_tasks(self, batch_id):
+    def find_next_dynamic_tasks(self):
         if not isinstance(self.dynamic_task, OrderedDict):
             return Exception("dynamic_tasks is not an OrderedDict")
 
-        ind = min(bisect.bisect_right(list(self.dynamic_task.keys()), batch_id), len(self.dynamic_task.keys()) - 1)
+        ind = min(bisect.bisect_right(list(self.dynamic_task.keys()), self.batch_id), len(self.dynamic_task.keys()) - 1)
         key = list(self.dynamic_task.keys())[ind]
 
         return self.dynamic_task[key]
+
+    def find_next_dynamic_num_nodes(self):
+        if not isinstance(self.dynamic_size, OrderedDict):
+            return Exception("dynamic_size is not an OrderedDict")
+
+        # FIXME: This is the same in the method before. It should be moved to a separate function.
+        ind = min(bisect.bisect_right(list(self.dynamic_size.keys()), self.batch_id), len(self.dynamic_size.keys()) - 1)
+        key = list(self.dynamic_size.keys())[ind]
+
+        return self.dynamic_size[key]
 
     def change_max_node(self, max_node):
         self.max_node = max_node
@@ -811,6 +822,20 @@ class GCPNGeneration(tasks.Task, core.Configurable):
     def reinforce_forward(self, batch):
         all_loss = torch.tensor(0, dtype=torch.float32, device=self.device)
         metric = {}
+
+        # Reshape baseline if needed
+        if self.dynamic_size:
+            current_dynamic_num_nodes = self.find_next_dynamic_num_nodes()
+            print(f'Batch {self.batch_id} | Current dynamic num nodes: {current_dynamic_num_nodes}')
+            if (current_dynamic_num_nodes + 1) != self.moving_baseline.shape[0]:
+                print(f"Changing max nodes from {self.max_node} to {current_dynamic_num_nodes}")
+                self.change_max_node(current_dynamic_num_nodes)
+
+        current_tasks = self.task
+        if self.dynamic_task:
+            current_tasks = self.find_next_dynamic_tasks()
+
+        print(f'Batch {self.batch_id} | Current Tasks: {current_tasks}')
 
         if self.batch_id % self.agent_update_interval == 0:
             self.agent_model.load_state_dict(self.model.state_dict())
@@ -851,12 +876,6 @@ class GCPNGeneration(tasks.Task, core.Configurable):
             print(self.best_results["QED"])
 
         reward = torch.zeros(len(graph), device=self.device)
-
-        current_tasks = self.task
-        if self.dynamic_task:
-            current_tasks = self.find_closest_dynamic_tasks(self.batch_id)
-
-        print(f'Batch {self.batch_id} | Current Tasks: {current_tasks}')
 
         for task in current_tasks:
             if task == "plogp":
