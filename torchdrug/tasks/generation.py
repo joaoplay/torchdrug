@@ -819,6 +819,11 @@ class GCPNGeneration(tasks.Task, core.Configurable):
         self.max_node = max_node
         self.moving_baseline = torch.zeros(self.max_node + 1, device=self.device)
 
+    def increase_max_node(self, max_node):
+        max_node_diff = max_node - self.max_node    
+        self.max_node = max_node
+        self.moving_baseline = torch.nn.functional.pad(self.moving_baseline, (0, max_node_diff), 'constant', 0)
+
     def reinforce_forward(self, batch):
         all_loss = torch.tensor(0, dtype=torch.float32, device=self.device)
         metric = {}
@@ -829,7 +834,8 @@ class GCPNGeneration(tasks.Task, core.Configurable):
             print(f'Batch {self.batch_id} | Current dynamic num nodes: {current_dynamic_num_nodes}')
             if (current_dynamic_num_nodes + 1) != self.moving_baseline.shape[0]:
                 print(f"Changing max nodes from {self.max_node} to {current_dynamic_num_nodes}")
-                self.change_max_node(current_dynamic_num_nodes)
+                self.increase_max_node(current_dynamic_num_nodes)
+                #self.change_max_node(current_dynamic_num_nodes)
 
         current_tasks = self.task
         if self.dynamic_task:
